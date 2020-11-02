@@ -1,0 +1,73 @@
+body {
+    min-width:400px;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:900");
+* {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+.grid {
+  padding: 0 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 50px;
+}
+.grid__section {
+  padding: 50px 25px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.grid__section h2 {
+  margin: 0 0 25px;
+  font-size: 30px;
+  line-height: 1.25;
+}
+.grid__section h3 {
+  position: absolute;
+  font-size: 35px;
+  top: -10px;
+  right: -5px;
+  margin: 0;
+  z-index: -1;
+  color: whitesmoke;
+}
+
+.title {
+  grid-column: 1 / span 3;
+  text-align: center;
+  padding: 5px 0;
+  background: whitesmoke;
+}
+.title h1 {
+  margin: 0;
+  font-size: 5px;
+  color: #f50057;
+}
+
+.btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 900;
+  color: #fff;
+  background-color: #f50057;
+  border: 2px solid #f50057;
+  cursor: pointer;
+  width: max-content;
+  transition: 0.25s ease;
+}
+
+.btn-3:hover {
+  color: #f50057;
+  background-color: transparent;
+}
+
+.btn--transparent {
+  color: #f50057;
+  background-color: transparent;
+}

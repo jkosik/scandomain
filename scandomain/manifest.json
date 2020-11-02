@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "ScanDomain",
+  "description": "ScanDomain",
+  "version": "0.0.1",
+  "icons":  {
+    "64": "img/icon.png" 
+  },  
+  "browser_action": {
+    "default_icon": "img/icon.png",
+    "default_title": "ScanDomain",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["activeTab", "notifications", "storage"] 
+}
+

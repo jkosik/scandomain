@@ -1,5 +1,6 @@
 //popup.js
 
+//setting parameters fro Chrome notification window
 var options = {
     type: "basic",
     title: "ScanDomain",
@@ -8,12 +9,15 @@ var options = {
   
 };
 
+//optional callback function when triggering Chrome notification window
 function creationCallback() {
   console.log("Notification triggered");
 }
 
+//main part. Runs whenever popup.html is loaded
 document.addEventListener('DOMContentLoaded', function() {
-  //load checkbox states as stored in local storage
+
+  //load and update checkbox states as stored in local Chrome storage
   chrome.storage.sync.get('check1', function (data){
     document.getElementById('check1').checked = data.check1;
   });
@@ -24,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('check3').checked = data.check3;
   });
 
-  //on button click store checkbox states to local storage
+  //store checkbox states to local Chrome storage upon clicking Launch button
   document.getElementById("launch").onclick = function () {
     var value1 = document.getElementById('check1').checked;
     var value2 = document.getElementById('check2').checked;
@@ -36,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //trigger Chrome notification
     chrome.notifications.create(options, creationCallback);
 
-    //detect domain and open new tabs
+    //detect domain currently browsed by the user
     chrome.tabs.query({active: true, lastFocusedWindow: true, currentWindow: true}, function (tabs) {
       var tab = tabs[0];
       var url = new URL(tab.url);
@@ -44,6 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
       target1 = "https://www.ssllabs.com/ssltest/analyze.html?viaform=on&d=" + domain
       target2 = "https://mxtoolbox.com/SuperTool.aspx?action=mx%3a" + domain + "&run=toolpage"
       target3 = "https://www.shodan.io/search?query=" + domain
+
+      //if option checked, open new tab
       if (document.getElementById('check1').checked) {
         chrome.tabs.create({"url": target1}); 
       }
@@ -57,4 +63,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
   };
 });
-
